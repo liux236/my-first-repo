@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skaiciuotuvas</title>
+    <link rel="stylesheet" href="stilius3.css">
+</head>
+<body>
+    <div class="Korpusas">
+        
+        <div class="ekranas">
+            
+            <div id="rezid"    class="rezultatas">
+            <div class="senasrez"></div>
+            <div class="dabarrez"></div>
+            
+            </div>
+            
+        </div>
+        <div class="klaviatura">
+            <div class="skaiciai">
+                <button class="fun"onclick="veiksmai('+-')">±</button>                
+                <button class="fun"onclick="del()">&#8592;</button>
+                <button class="fun"onclick="trinti()">C</button>
+                <button class="fun"onclick="operacija('/')">÷</button>
+                <button class="skc"onclick="skaiciai(7)">7</button>
+                <button class="skc"onclick="skaiciai(8)">8</button>
+                <button class="skc"onclick="skaiciai(9)">9</button>
+                <button class="fun"onclick="operacija('*')">×</button>
+                <button class="skc"onclick="skaiciai(4)">4</button>
+                <button class="skc"onclick="skaiciai(5)">5</button>
+                <button class="skc"onclick="skaiciai(6)">6</button>
+                <button class="fun"onclick="operacija('-')">-</button>
+                <button class="skc"onclick="skaiciai(1)">1</button>
+                <button class="skc"onclick="skaiciai(2)">2</button>
+                <button class="skc"onclick="skaiciai(3)">3</button>
+                <button class="fun"onclick="operacija('+')">+</button>
+                <button class="skc"onclick="veiksmai('100 *')">00</button>
+                <button class="skc"onclick="skaiciai(0)">0</button>
+                <button class="fun"onclick="kablelis()">.</button>
+                <button class="fun"onclick="lygu()">=</button>
+            </div>
+                <div class="veiksmai">
+                <button class="veiks"onclick="veiksmai('sin')">sin</button>
+                <button class="veiks"onclick="veiksmai('cos')">cos</button>
+                <button class="veiks"onclick="veiksmai('√')">√</button>
+                <button class="veiks"onclick="veiksmai('∛')">∛</button>
+                <button class="veiks"onclick="fakt()">x!</button>
+                <button class="veiks"onclick="spausti()">π</button>
+                <button class="veiks"onclick="veiksmai('²')">x²</button>
+                <button class="veiks"onclick="operacija('^ y')">x^y</button>
+                <button class="veiks"onclick="veiksmai('tan')">tan</button>
+                <button class="veiks"onclick="veiksmai('~')">~</button>
+                <button class="veiks"onclick="veiksmai('?')">?</button>
+                <button class="veiks" onclick="veiksmai('%')">%</button>
+                <button class="veiks"onclick="spausti3()">E</button>
+                <button class="veiks"onclick="veiksmai('log')">log</button>
+                <button class="veiks"><a href="../project1.html" style="color: black;text-decoration: none;background-color: transparent;" >Back</a></button>
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script>
+        var dabarrez = 0;
+        var senasrez = document.querySelector (".senasrez");
+        var infolaukas = document.querySelector(".dabarrez")    
+        var zenklas = 0;
+        var pirmas, antras;
+        
+        function spausti2 (){
+            dabarrez = dabarrez + "";
+            infolaukas.innerHTML=dabarrez;
+        }
+        function spausti3 (){
+            dabarrez = Math.E;
+            //rezultatas++;
+            infolaukas.innerHTML=dabarrez;
+            senasrez.innerHTML="E";
+        }
+        function spausti (){
+            dabarrez = Math.PI;
+            //rezultatas++;
+            infolaukas.innerHTML=dabarrez;
+            senasrez.innerHTML="π";
+        }
+    function veiksmai(argumentas){
+        pirmas = Number(infolaukas.innerHTML);
+        var ats2
+        if(argumentas=="sin") {ats2=Math.sin(infolaukas.innerHTML)}
+        if(argumentas=="cos") {ats2=Math.cos(infolaukas.innerHTML)}
+        if(argumentas=="√") {ats2=Math.sqrt(infolaukas.innerHTML)}
+        if(argumentas=="∛") {ats2=Math.cbrt(infolaukas.innerHTML)}
+        if(argumentas=="²") {ats2=Math.pow(infolaukas.innerHTML, 2)}
+        if(argumentas=="+-") {ats2=infolaukas.innerHTML* -1}
+        if(argumentas=="%") {ats2=pirmas/100}
+        if(argumentas=="100 *") {ats2=pirmas*100}
+        if(argumentas=="tan") {ats2=Math.tan(infolaukas.innerHTML)}
+        if(argumentas=="~") {ats2=Math.round(infolaukas.innerHTML)}
+        if(argumentas=="?") {ats2=Math.random(infolaukas.innerHTML)}
+        if(argumentas=="log") {ats2=Math.log2(infolaukas.innerHTML)}
+        
+        infolaukas.innerHTML=ats2;
+        senasrez.innerHTML=argumentas + pirmas;
+        }
+        function skaiciai(argumentas){
+            var temp = infolaukas.innerHTML;
+            infolaukas.innerHTML=temp+argumentas;
+        }
+        function trinti(){
+            infolaukas.innerHTML="";
+            senasrez.innerHTML="";
+        }
+        function operacija(argumentas){
+            pirmas = Number(infolaukas.innerHTML);
+            if(argumentas=="+") {zenklas=1;}
+            if(argumentas=="-") {zenklas=2;}
+            if(argumentas=="*") {zenklas=3;}
+            if(argumentas=="/") {zenklas=4;}
+            if(argumentas=="^ y") {zenklas=5;}
+            if(argumentas=="%") {zenklas=6;}
+            infolaukas.innerHTML="";
+            senasrez.innerHTML=pirmas + " " +argumentas;
+            
+        }
+        function kablelis(){
+            let temp = infolaukas.innerHTML;
+            if(temp.indexOf(Number(infolaukas.innerHTML))<0){
+                temp = temp + '0';
+                infolaukas.innerHTML= "0";
+            }
+            if(temp.indexOf('.')<0){
+                temp = temp + '.';
+                infolaukas.innerHTML=temp;
+                }
+                else{
+                alert("Vieno uzteks");
+                }
+        }
+        function lygu(){
+            antras=Number(infolaukas.innerHTML);
+            var ats;
+            var n = zenklas.toString()
+            var senasats
+            if(zenklas>0){
+            if(zenklas==1) {ats=pirmas+antras};
+            if(zenklas==2) {ats=pirmas-antras};
+            if(zenklas==3) {ats=pirmas*antras};
+            if(zenklas==4) {ats=pirmas/antras};
+            if(zenklas==5) {ats=Math.pow(pirmas, antras)};
+                
+            infolaukas.innerHTML=ats;
+            }else{
+                alert("Neturiu ka veikt");
+            }
+                }
+        function fakt(){
+            pirmas=Number(infolaukas.innerHTML);
+            // 3!=3*2*1
+            if(pirmas>=0){
+            var ats=1;
+            for(var i=pirmas; i>0; i--){
+                ats=ats*i;
+            }
+            infolaukas.innerHTML=ats;
+                senasrez.innerHTML=pirmas + "!";
+            }else(alert("Taip negalima daryti"))
+        }
+    function del(){
+       // var skaicius = "zodis";
+        // console.log("zodis", skaicius.length);
+        // console.log(skaicius.substr(0,skaicius.length-1));
+        var temp = infolaukas.innerHTML;
+        infolaukas.innerHTML=temp.substr(0, temp.length-1);
+    }
+    /*function kazkas(){
+        pirmas=Number(infolaukas.innerHTML);
+        if(length == 0){
+            pirmas = pirmas + '0.';
+            infolaukas.innerHTML=pirmas;
+        }
+            
+    }*/
+</script>
+</html>

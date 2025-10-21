@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="stilius 2.css">
+</head>
+<body>
+<div class="pagrindinis">
+      <div class="rezultatai">
+          <li class="alio">1</li><span class="zaidejai">Kompiuteris</span></div>
+       <li class="info">2</li>
+       <div class="rezultatai">
+           <li class="alio">3</li><span class="zaidejai">Žaidėjas</span></div>
+       
+
+       </div>    
+    <li class="skaicius">6</li>
+    
+    
+<div id="parinktys">
+ <div id="dock">
+   <div>
+      <ul>
+        <span>Akmuo</span>
+        <a href="#"onclick="zaidejasRenkasi('akmuo')"><img src="foto/rock.png"></a>
+      </ul>
+      <ul>
+        <span>Popierius</span>
+        <a href="#" onclick="zaidejasRenkasi('popierius')"><img src="foto/paper.png"/></a>
+      </ul>
+     <ul>
+     <span>Zirkles</span>
+        <a href="#"onclick="zaidejasRenkasi('zirkles')"><img src="foto/zirkles.png"/></a>
+     </ul>
+      <ul>
+      <span>Pradeti is naujo</span>
+      <a href="#" onclick="reset()"><img src="foto/restart.png"></a>
+      </ul>
+      <ul><div id="taisykles">
+        <span>Back</span>
+        <a href="../project1.html"><img src="foto/taisykles.png"></a>
+     </div></ul>
+      
+   </div>
+ </div>
+</div>
+   <script>
+             
+        let zaidejoPasirinkimas; //nieko nepasirinkes
+        let kompiuterioPasirinkimas; 
+        let zaidejoLaimejimuSk=0, kompiuterioLaimejimuSk=0;
+        const blokai = document.querySelectorAll('li');
+        blokai[0].innerHTML="Kompiuterio pasirinkimas";
+        blokai[1].innerHTML="Laimėtojas";
+        blokai[2].innerHTML="Žaidėjo pasirinkimas";
+        blokai[3].innerHTML="Laimėjimų skaičius";
+        blokai[4].innerHTML="mygtukas pradėti iš naujo";
+        
+            
+        
+        
+        function zaidejasRenkasi(pasirinkimas){
+            zaidejoPasirinkimas=pasirinkimas;
+            switch (pasirinkimas){
+                case 'akmuo':
+                    blokai[2].innerHTML="<img src='foto/rock.png' alt='akmuo' id = 'alio' style = 'width:64px;height:64px;'>";
+                break;
+                case 'popierius':
+                    blokai[2].innerHTML="<img src='foto/paper.png' alt='popierius' id = 'alio' style = 'width:64px;height:64px;'>"; 
+                   break;    
+                case 'zirkles':  
+                    blokai[2].innerHTML="<img src='foto/zirkles.png' alt='zirkles' id = 'alio' style = 'width:64px;height:64px;'>"
+                    break;       
+            }
+            
+            kompiuterisRenkasi();
+            teisejas();
+            isvekTaskus();
+        }
+        
+        function kompiuterisRenkasi(){
+            var atsitiktinisskaicius = Math.random()*3;
+            console.log(atsitiktinisskaicius);
+            var suapvalintas = Math.floor(atsitiktinisskaicius);
+            console.log(suapvalintas);
+            switch(suapvalintas){
+                case 0:
+                    kompiuterioPasirinkimas='akmuo';
+                    blokai[0].innerHTML="<img src='foto/rock.png' alt='akmuo' id = 'alio' style = 'width:64px;height:64px;'>";
+                    break;
+                    
+                case 1:
+                    kompiuterioPasirinkimas="popierius";
+                    blokai[0].innerHTML="<img src='foto/paper.png' alt='popierius' id = 'alio' style = 'width:64px;height:64px;'>";
+                    break;
+                    
+                case 2:
+                    kompiuterioPasirinkimas="zirkles";
+                    blokai[0].innerHTML="<img src='foto/zirkles.png' alt='zirkles' id = 'alio' style = 'width:64px;height:64px;'>";
+                    break;
+            }
+        }
+        
+        function teisejas(){
+            if(kompiuterioPasirinkimas == zaidejoPasirinkimas){
+                blokai[1].innerHTML="Lygiosios";
+            }
+            
+            if((kompiuterioPasirinkimas=='akmuo')&& (zaidejoPasirinkimas=='zirkles')){
+                blokai[1].innerHTML="Laimėjo kompiuteris";
+                kompiuterioLaimejimuSk++;
+            } 
+            
+            
+            if((kompiuterioPasirinkimas=='akmuo')&& (zaidejoPasirinkimas=='popierius')){
+                blokai[1].innerHTML="Laimėjo žaidėjas";
+                zaidejoLaimejimuSk++;
+            }
+            
+            if((kompiuterioPasirinkimas=='zirkles')&& (zaidejoPasirinkimas=='akmuo')){
+                blokai[1].innerHTML="Laimėjo žaidėjas";
+                zaidejoLaimejimuSk++;
+            }
+            
+            if((kompiuterioPasirinkimas=='zirkles')&& (zaidejoPasirinkimas=='popierius')){
+                blokai[1].innerHTML="Laimėjo kompiuteris";
+                kompiuterioLaimejimuSk++;
+            }
+            
+            if((kompiuterioPasirinkimas=='popierius')&& (zaidejoPasirinkimas=='zirkles')){
+                blokai[1].innerHTML="Laimėjo žaidėjas";
+                zaidejoLaimejimuSk++;
+            }
+            
+            if((kompiuterioPasirinkimas=='popierius')&& (zaidejoPasirinkimas=='akmuo')){
+                blokai[1].innerHTML="Laimėjo kompiuteris";
+                kompiuterioLaimejimuSk++;
+            }
+        }
+        
+        function isvekTaskus(){
+            blokai[3].innerHTML="Kompiuteris "+kompiuterioLaimejimuSk+" : "+zaidejoLaimejimuSk +" Žaidėjas";
+        }
+    function reset(){
+            kompiuterioLaimejimuSk=0;
+            zaidejoLaimejimuSk=0;
+            blokai[3].innerHTML="Kompiuteris "+kompiuterioLaimejimuSk+" : "+zaidejoLaimejimuSk +" Žaidėjas";
+            }
+    </script>
+   
+</body>
+</html>

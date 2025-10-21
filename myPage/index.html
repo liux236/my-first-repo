@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dangirdas Šimkus | Front End Developer & 3D Visualization Specialist</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+    <!-- Navigation bar-->
+        <div class="navigation">
+            <a href="index.html" class="logo"></a>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/dangirdas.sim" target="_blank"><img src="icons/facebook.png" class="sbuttons"></a>
+                <a href="https://www.linkedin.com/in/dangirdas-%C5%A1imkus/" target="_blank"><img src="icons/linkedin.png" class="sbuttons"></a>
+                <a href="https://www.youtube.com/@DangirdasSim" target="_blank"><img src="icons/youtube.png" class="sbuttons"></a>
+                <a href="https://www.instagram.com/dangirdassim/" target="_blank"><img src="icons/instagram.png" class="sbuttons"></a>
+            </div>
+            <div class="menu">
+            <a href="about/about.html" class="links">About</a>
+            <a href="about/about.html" class="links">Portfolio</a>
+            <a href="about/about.html" class="links">Contact</a>
+        </div>
+    </div>
+
+    <!-- /Navigation bar-->
+
+    <div class="main">
+        <div class="message">
+            <img src="board.png" id="board">
+            <p id="read">Read 20/10/2025</p>
+        </div>
+        <h1>Hi,</h1>
+        <h2>I'm Dangirdas Šimkus</h2>
+        <p id="first">a Front-end developer & 3D Visualization Specialist</p>
+        <img src="Text Selection.png" class="selector">
+        <p id="second">Bridging design and code to build responsive, visually engaging
+        digital experiences.</p>
+        
+    </div>
+        <img src="icons/Divider.png" class="divider">
+        <div class="portfolio-section">
+    <h2 id="portfolioTitle">Front-end developer</h2> 
+
+    <div class="slider">
+        <button class="prev">&#10094;</button>
+        <div class="slides">
+        <a href="project1/project1.html" class="slide">
+            <div class="portfolio-image" style="background-image: url('code.jpg');"></div>
+        </a>
+
+        <a href="project1/project1.html" class="slide">
+            <div class="portfolio-image" style="background-image: url('3D.png');"></div>
+        </a>
+        </div>
+        <button class="next">&#10095;</button>
+    </div>
+
+    <div class="dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+    </div>
+    </div>
+
+
+<!-- Footer -->
+    <footer class="footer">
+        <h3 id="fname">© 2025 Dangirdas Šimkus — All rights reserved.</h3>
+        <div class="footer-icons">
+        <a href="https://www.facebook.com/dangirdas.sim" target="_blank"><img src="icons/facebook.png" class="fbuttons"></a>
+                <a href="https://www.linkedin.com/in/dangirdas-%C5%A1imkus/" target="_blank"><img src="icons/linkedin.png" class="fbuttons"></a>
+                <a href="https://www.youtube.com/@DangirdasSim" target="_blank"><img src="icons/youtube.png" class="fbuttons"></a>
+                <a href="https://www.instagram.com/dangirdassim/" target="_blank"><img src="icons/instagram.png" class="fbuttons"></a>
+            </div>
+            <div class="fmenu">
+            <a href="about/about.html" class="flinks">About</a>
+            <a href="about/about.html" class="flinks">Portfolio</a>
+            <a href="about/about.html" class="flinks">Contact</a>
+        </div>
+    </footer>
+<!-- /Footer -->
+<script>
+  const slides = document.querySelector('.slides');
+  const dots = document.querySelectorAll('.dot');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  const title = document.getElementById('portfolioTitle');
+
+  const titles = ['Front-end developer', '3D'];
+  let activeIndex = 0;
+
+  function showSlide(index) {
+    
+    if (index < 0) index = titles.length - 1;
+    if (index >= titles.length) index = 0;
+
+    activeIndex = index;
+    slides.style.transform = `translateX(-${activeIndex * 100}%)`;
+
+   
+    dots.forEach(d => d.classList.remove('active'));
+    dots[activeIndex].classList.add('active');
+
+    
+    title.textContent = titles[activeIndex];
+  }
+
+ 
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => showSlide(i));
+  });
+
+  
+  prevBtn.addEventListener('click', () => showSlide(activeIndex - 1));
+  nextBtn.addEventListener('click', () => showSlide(activeIndex + 1));
+</script>
+</body>
+</html>
